@@ -4,6 +4,7 @@ export const StyledRegisterForm = styled.form`
   display: flex;
   flex-direction: column;
   width: 370px;
+  max-width: 95%;
   margin: 0 auto;
   gap: 22px;
   padding: 22px;

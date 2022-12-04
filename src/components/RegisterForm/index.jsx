@@ -50,7 +50,6 @@ const RegisterForm = () => {
 
   const submit = (data) => {
     delete data.retypePassword;
-    console.log(data);
     userRegister(data);
     reset();
   };
