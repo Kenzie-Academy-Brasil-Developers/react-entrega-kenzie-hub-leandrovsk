@@ -11,6 +11,7 @@ export const StyledButton = styled.button`
 
   &.LoginBackToRegister {
     background-color: var(--color-gray-1);
+    width: 100%;
     color: #fff;
   }
 
@@ -50,5 +51,24 @@ export const StyledButton = styled.button`
     background-color: var(--color-primary-negative);
     pointer-events: none;
     cursor: default;
+  }
+  &.Logout {
+    background-color: var(--color-gray-3);
+    padding: 0px 16px;
+    color: var(--color-gray-0);
+  }
+  &.Logout:hover {
+    background-color: var(--color-gray-2);
+  }
+  &.NewTech {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-gray-3);
+    height: 32px;
+    width: 32px;
+  }
+  &.NewTech:hover {
+    background-color: var(--color-gray-2);
   }
 `;

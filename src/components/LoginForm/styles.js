@@ -4,6 +4,7 @@ export const StyledLoginForm = styled.form`
   display: flex;
   flex-direction: column;
   width: 370px;
+  max-width: 95%;
   margin: 0 auto;
   gap: 22px;
   padding: 22px;
@@ -28,18 +29,6 @@ export const StyledLoginForm = styled.form`
     position: relative;
   }
 
-  input {
-    height: 48px;
-    border-radius: 0.4rem;
-    padding-left: 1.6rem;
-    border: none;
-    font-size: 1.6rem;
-    font-weight: 400;
-    color: var(--color-gray-0);
-    background-color: var(--color-gray-2);
-    width: 100%;
-  }
-
   .EyeIcon {
     width: 15px;
     position: absolute;
@@ -54,5 +43,12 @@ export const StyledLoginForm = styled.form`
     color: var(--color-gray-1);
     font-weight: 600;
     margin: 12px 0px;
+  }
+
+  a {
+    display: flex;
+    align-self: center;
+    width: 100%;
+    text-decoration: none;
   }
 `;

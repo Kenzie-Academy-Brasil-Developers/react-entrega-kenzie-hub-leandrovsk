@@ -4,6 +4,7 @@ export const StyledRegisterForm = styled.form`
   display: flex;
   flex-direction: column;
   width: 370px;
+  max-width: 95%;
   margin: 0 auto;
   gap: 22px;
   padding: 22px;
@@ -27,18 +28,6 @@ export const StyledRegisterForm = styled.form`
 
   span {
     position: relative;
-  }
-
-  input {
-    height: 48px;
-    border-radius: 0.4rem;
-    padding-left: 1.6rem;
-    border: none;
-    font-size: 1.6rem;
-    font-weight: 400;
-    color: var(--color-gray-0);
-    background-color: var(--color-gray-2);
-    width: 100%;
   }
 
   p {
