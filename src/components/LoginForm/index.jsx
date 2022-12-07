@@ -36,7 +36,7 @@ const LoginForm = ({ setUserData }) => {
       setUserData(response.data.user);
       navigate("/");
     } catch (error) {
-      toast.error(error.response.data.message === "Incorrect email / password combination" ? "Erro: usuário ou senha incorretos" : "Ops, algo deu errado");
+      toast.error(error.response.data.message === "Incorrect email / password combination" ? "Erro: usuário ou senha incorretos" : "Ops, Algo deu errado");
     } finally {
       setOnLoading(false);
     }
@@ -65,10 +65,8 @@ const LoginForm = ({ setUserData }) => {
         {onLoading ? "Entrando..." : "Entrar"}
       </Button>
       <p>Ainda não possui uma conta?</p>
-      <Link to={"/register"}>
-        <Button type="button" className="LoginBackToRegister">
-          Cadastre-se
-        </Button>
+      <Link className="LoginBackToRegister" to={"/register"}>
+        Cadastre-se
       </Link>
     </StyledLoginForm>
   );

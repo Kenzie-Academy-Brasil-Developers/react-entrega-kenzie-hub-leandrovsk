@@ -3,7 +3,6 @@ import { StyledTech } from "./styles";
 import TrashIcon from "../../../../assets/img/trash.svg";
 
 const Tech = ({ tech, deleteTech }) => {
-  console.log(tech);
   return (
     <StyledTech>
       <h3 className="TechTitle">{tech.title}</h3>

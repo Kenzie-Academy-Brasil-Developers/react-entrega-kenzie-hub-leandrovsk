@@ -13,15 +13,21 @@ const RegisterForm = () => {
   const [onLoading, setOnloading] = useState(false);
 
   const formSchema = yup.object().shape({
-    name: yup.string().required("O nome é obrigatório"),
-    email: yup.string().required("O email é obrigatório").email("Email inválido"),
-    password: yup.string().required("A senha é obrigatória").min(6, "A senha deve ter no mínimo 6 caracteres"),
+    name: yup.string().required("O nome é obrigatório."),
+    email: yup.string().required("O email é obrigatório").email("Email inválido."),
+    password: yup
+      .string()
+      .required("A senha é obrigatória.")
+      .matches(/.{8,}$/, "A senha precisa conter no mínimo 8 caracteres.")
+      .matches(/(?=.*[^\w\d\s])/, "A senha precisa conter pelo menos um caracter especial.")
+      .matches(/(?=.*?[0-9])/, "A senha precisa conter pelo menos um número.")
+      .matches(/(?=.*?[A-Z])(?=.*?[a-z])/, "A senha precisa conter pelo menos uma letra maiúscula e uma minúscula."),
     retypePassword: yup
       .string()
-      .required("Repita sua senha")
-      .oneOf([yup.ref("password")], "As senhas não coincidem "),
-    bio: yup.string().required("A bio é obrigatória"),
-    contact: yup.string().required("O contato é obrigatório"),
+      .required("Repita sua senha.")
+      .oneOf([yup.ref("password")], "As senhas não coincidem."),
+    bio: yup.string().required("A bio é obrigatória."),
+    contact: yup.string().required("O contato é obrigatório."),
   });
 
   const navigate = useNavigate();
@@ -37,12 +43,10 @@ const RegisterForm = () => {
     try {
       setOnloading(true);
       await api.post("users", data);
-      toast.success("Cadastro efetuado com sucesso \n Redirecionando para o login");
-      setTimeout(() => {
-        navigate("/login");
-      }, 3000);
+      toast.success("Conta criada com sucesso!");
+      navigate("/login");
     } catch (error) {
-      toast.error(error.response.data.message === "Email already exists" ? "Erro: o email já existe" : "Ops, algo deu errado");
+      toast.error("Ops, algo deu errado");
     } finally {
       setOnloading(false);
     }
