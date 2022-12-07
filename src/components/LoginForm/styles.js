@@ -51,4 +51,24 @@ export const StyledLoginForm = styled.form`
     width: 100%;
     text-decoration: none;
   }
+
+  .LoginBackToRegister {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 48px;
+    border-radius: 0.4rem;
+    cursor: pointer;
+    border: none;
+    font-size: 1.6rem;
+    font-weight: 500;
+    transition: ease 0.3s;
+    background-color: var(--color-gray-1);
+    width: 100%;
+    color: #fff;
+  }
+
+  .LoginBackToRegister:hover {
+    background-color: var(--color-gray-2);
+  }
 `;

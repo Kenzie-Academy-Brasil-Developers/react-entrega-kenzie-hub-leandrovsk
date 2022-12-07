@@ -34,6 +34,8 @@ const GlobalStyle = createGlobalStyle`
         --toastify-color-success: var(--color-success);
         --toastify-color-error: var(--color-negative);
         --toastify-color-dark: var(--color-gray-2);
+        --toastify-text-color-dark: var(--color-gray-0);
+        --toastify-font-family: 'Inter',sans-serif;
 
         --font-title: 1.6rem;
         --font-headline: 1.2rem;
