@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import Button from "../Button";
 import { StyledDashMain } from "./styles";
 import PlusIcon from "../../assets/img/plus.svg";
 import TechList from "./TechList";
+import { UserContext } from "../../contexts/UserContext";
 
-const DashMain = ({userData}) => {
+const DashMain = () => {
+  const { userData } = useContext(UserContext);
   return (
     <StyledDashMain>
       <span className="DashMainHeader">
@@ -13,7 +15,7 @@ const DashMain = ({userData}) => {
           <img src={PlusIcon} alt="Nova Tecnologia" />
         </Button>
       </span>
-      <TechList userData={userData}/>
+      <TechList userData={userData} />
     </StyledDashMain>
   );
 };

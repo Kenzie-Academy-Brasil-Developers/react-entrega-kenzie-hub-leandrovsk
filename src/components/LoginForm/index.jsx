@@ -1,18 +1,16 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import Button from "../Button";
 import { StyledLoginForm } from "./styles";
 import EyeIcon from "../../assets/img/eyeIcon.svg";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Link, useNavigate } from "react-router-dom";
-import { api } from "../../services/api";
-import { toast } from "react-toastify";
+import { Link } from "react-router-dom";
 import Input from "../Input";
+import { UserContext } from "../../contexts/UserContext";
 
-const LoginForm = ({ setUserData }) => {
-  const [showPassword, setShowPassword] = useState(false);
-  const [onLoading, setOnLoading] = useState(false);
+const LoginForm = () => {
+  const { showPassword, setShowPassword, btnLoading, userLogin } = useContext(UserContext);
 
   const formSchema = yup.object().shape({
     email: yup.string().required("Digite um email válido").email("Email inválido"),
@@ -26,28 +24,10 @@ const LoginForm = ({ setUserData }) => {
     formState: { errors },
   } = useForm({ mode: "onChange", resolver: yupResolver(formSchema) });
 
-  const userLogin = async (data) => {
-    try {
-      setOnLoading(true);
-      const response = await api.post("sessions", data);
-      window.localStorage.clear();
-      localStorage.setItem("@TOKEN", response.data.token);
-      localStorage.setItem("@USERID", response.data.user.id);
-      setUserData(response.data.user);
-      navigate("/");
-    } catch (error) {
-      toast.error(error.response.data.message === "Incorrect email / password combination" ? "Erro: usuário ou senha incorretos" : "Ops, Algo deu errado");
-    } finally {
-      setOnLoading(false);
-    }
-  };
-
   const submit = (data) => {
     userLogin(data);
     reset();
   };
-
-  const navigate = useNavigate();
 
   return (
     <StyledLoginForm onSubmit={handleSubmit(submit)}>
@@ -62,7 +42,7 @@ const LoginForm = ({ setUserData }) => {
       </span>
       {errors.password?.message}
       <Button type="submit" className="LoginSubmit">
-        {onLoading ? "Entrando..." : "Entrar"}
+        {btnLoading ? "Entrando..." : "Entrar"}
       </Button>
       <p>Ainda não possui uma conta?</p>
       <Link className="LoginBackToRegister" to={"/register"}>

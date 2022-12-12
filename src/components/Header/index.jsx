@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
+import { UserContext } from "../../contexts/UserContext";
 import { StyledHeader } from "./styles";
 
-const Header = ({ userData }) => {
+const Header = () => {
+  const { userData } = useContext(UserContext);
+
   return (
     <StyledHeader>
       <span className="HeaderContainer">

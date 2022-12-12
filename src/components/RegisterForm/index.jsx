@@ -1,16 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
 import { useForm } from "react-hook-form";
 import Button from "../Button";
 import { StyledRegisterForm } from "./styles";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { toast } from "react-toastify";
-import { api } from "../../services/api";
-import { useNavigate } from "react-router-dom";
 import Input from "../Input";
+import { useContext } from "react";
+import { UserContext } from "../../contexts/UserContext";
 
 const RegisterForm = () => {
-  const [onLoading, setOnloading] = useState(false);
+  const { btnLoading, userRegister } = useContext(UserContext);
 
   const formSchema = yup.object().shape({
     name: yup.string().required("O nome é obrigatório."),
@@ -30,27 +29,12 @@ const RegisterForm = () => {
     contact: yup.string().required("O contato é obrigatório."),
   });
 
-  const navigate = useNavigate();
-
   const {
     register,
     handleSubmit,
     reset,
     formState: { isDirty, isValid, errors },
   } = useForm({ mode: "onChange", resolver: yupResolver(formSchema) });
-
-  const userRegister = async (data) => {
-    try {
-      setOnloading(true);
-      await api.post("users", data);
-      toast.success("Conta criada com sucesso!");
-      navigate("/login");
-    } catch (error) {
-      toast.error("Ops, algo deu errado");
-    } finally {
-      setOnloading(false);
-    }
-  };
 
   const submit = (data) => {
     delete data.retypePassword;
@@ -89,7 +73,7 @@ const RegisterForm = () => {
         <option value="Quinto módulo (Backend Avançado)">Quinto módulo (Backend Avançado)</option>
       </select>
       <Button type="submit" className={`RegisterSubmit ${(!isDirty || !isValid) && "Disabled"}`}>
-        {onLoading ? "Cadastrando..." : "Cadastrar"}
+        {btnLoading ? "Cadastrando..." : "Cadastrar"}
       </Button>
     </StyledRegisterForm>
   );
