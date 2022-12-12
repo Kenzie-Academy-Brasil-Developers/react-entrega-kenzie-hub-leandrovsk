@@ -8,6 +8,12 @@ export const StyledTech = styled.li`
   padding: 0px 22px;
   height: 49px;
   border-radius: 0.4rem;
+  transition: ease 0.3s;
+  cursor: pointer;
+
+  &:hover {
+    background-color: var(--color-gray-2);
+  }
 
   .TechTitle {
     color: #fff;
