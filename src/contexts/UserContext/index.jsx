@@ -40,6 +40,7 @@ export const UserProvider = ({ children }) => {
     };
 
     getUserData();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const userLogin = async (data) => {

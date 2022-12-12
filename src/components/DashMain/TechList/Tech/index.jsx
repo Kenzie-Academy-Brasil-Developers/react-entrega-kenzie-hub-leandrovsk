@@ -1,6 +1,5 @@
 import React from "react";
 import { StyledTech } from "./styles";
-import TrashIcon from "../../../../assets/img/trash.svg";
 
 const Tech = ({ tech, deleteTech }) => {
   return (
@@ -8,7 +7,6 @@ const Tech = ({ tech, deleteTech }) => {
       <h3 className="TechTitle">{tech.title}</h3>
       <span className="TechStatusContainer">
         <p>{tech.status}</p>
-        <img src={TrashIcon} alt="excluir tecnologia" onClick={() => deleteTech(tech.id)} />
       </span>
     </StyledTech>
   );

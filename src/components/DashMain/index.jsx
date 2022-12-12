@@ -1,21 +1,23 @@
-import React, { useContext } from "react";
+import React from "react";
 import Button from "../Button";
 import { StyledDashMain } from "./styles";
 import PlusIcon from "../../assets/img/plus.svg";
 import TechList from "./TechList";
-import { UserContext } from "../../contexts/UserContext";
+import { useContext } from "react";
+import { TechContext } from "../../contexts/TechContext";
 
 const DashMain = () => {
-  const { userData } = useContext(UserContext);
+  const { setTechModal } = useContext(TechContext)
+
   return (
     <StyledDashMain>
       <span className="DashMainHeader">
         <h2>Tecnologias</h2>
-        <Button className="NewTech">
+        <Button className="NewTech" onClick={() => setTechModal('enabled')}>
           <img src={PlusIcon} alt="Nova Tecnologia" />
         </Button>
       </span>
-      <TechList userData={userData} />
+      <TechList />
     </StyledDashMain>
   );
 };
