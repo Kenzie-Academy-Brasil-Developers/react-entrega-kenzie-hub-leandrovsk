@@ -54,7 +54,7 @@ export const StyledModal = styled.div`
     border: none;
     font-size: 1.6rem;
     font-weight: 400;
-    color: var(--color-gray-0);
+    color: var(--color-gray-1);
     background-color: var(--color-gray-2);
     width: 100%;
   }
@@ -77,6 +77,11 @@ export const StyledModal = styled.div`
     border: 0;
     cursor: pointer;
     font-size: 1.6rem;
+  }
+
+  .BtnsContainer {
+    display: flex;
+    justify-content: space-between;
   }
 
   &.enabled {

@@ -13,7 +13,7 @@ export const StyledButton = styled.button`
     background-color: var(--color-primary);
     color: var(--color-gray-0);
   }
-  
+
   &.LoginSubmit:hover {
     background-color: var(--color-primary-focus);
     color: #fff;
@@ -39,6 +39,35 @@ export const StyledButton = styled.button`
   &.Logout:hover {
     background-color: var(--color-gray-2);
   }
+
+  &.DeleteTech {
+    background-color: var(--color-gray-1);
+    padding: 0px 16px;
+    color: var(--color-gray-0);
+  }
+
+  &.DeleteTech:hover {
+    background-color: var(--color-gray-2);
+  }
+
+  &.EditTech {
+    background-color: var(--color-primary);
+    color: var(--color-gray-0);
+    padding: 0px 16px;
+  }
+
+  &.EditTechDisabled {
+    background-color: var(--color-primary-negative);
+    pointer-events: none;
+    color: var(--color-gray-0);
+    cursor: default;
+    padding: 0px 16px;
+  }
+
+  &.EditTech:hover {
+    background-color: var(--color-primary-focus);
+  }
+
   &.NewTech {
     display: flex;
     align-items: center;

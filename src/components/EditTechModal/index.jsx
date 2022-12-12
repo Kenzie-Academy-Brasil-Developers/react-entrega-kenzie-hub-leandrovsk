@@ -1,52 +1,49 @@
 import { useContext } from "react";
 import { TechContext } from "../../contexts/TechContext";
 import Button from "../Button";
-import * as yup from "yup";
 import { StyledModal } from "./styles";
 import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
 
 const EditTechModal = () => {
-  const { techModal, setTechModal, registerNewTech } = useContext(TechContext);
-
-  const formSchema = yup.object().shape({
-    title: yup.string().required("Digite um título"),
-  });
+  const { editTechModal, setEditTechModal, techData, deleteTech, editTech, setSelectChange, selectChange } = useContext(TechContext);
 
   const {
     register,
     handleSubmit,
-    reset,
     formState: { errors },
-  } = useForm({ mode: "onChange", resolver: yupResolver(formSchema) });
+  } = useForm();
 
   const submit = (data) => {
-    registerNewTech(data);
-    reset();
+    editTech(techData.id, data);
   };
 
   return (
-    <StyledModal className={techModal}>
+    <StyledModal className={editTechModal}>
       <div className="ModalContainer">
         <span>
-          <h3 className="ModalTitle">Cadastrar tecnologia</h3>
-          <button className="CloseBtn" onClick={() => setTechModal("disabled")}>
+          <h3 className="ModalTitle">Tecnologia Detalhes</h3>
+          <button className="CloseBtn" onClick={() => setEditTechModal("disabled")}>
             X
           </button>
         </span>
         <form onSubmit={handleSubmit(submit)}>
-          <label htmlFor="">Nome</label>
-          <input type="text" {...register("title")} />
+          <label htmlFor="">Nome do projeto</label>
+          <input defaultValue={techData.title} disabled />
           {errors.name?.message}
-          <label htmlFor="">Selecionar status</label>
-          <select {...register("status")}>
+          <label htmlFor="">Status</label>
+          <select {...register("status")} onChange={() => setSelectChange(true)}>
             <option value="Iniciante">Iniciante</option>
             <option value="Intermediário">Intermediário</option>
             <option value="Avançado">Avançado</option>
           </select>
-          <Button className={"RegisterSubmit"} type="submit">
-            Cadastrar Tecnologia
-          </Button>
+          <div className="BtnsContainer">
+            <Button className={selectChange ? "EditTech" : "EditTechDisabled"} type="submit">
+              Salvar alterações
+            </Button>
+            <Button className={"DeleteTech"} type="button" onClick={() => deleteTech(techData.id)}>
+              Excluir
+            </Button>
+          </div>
         </form>
       </div>
     </StyledModal>
